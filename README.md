@@ -1,47 +1,53 @@
 # bot-detector
 
-Bot de automatización GUI basado en detección de imágenes con Python y OpenCV.
+GUI automation bot using image detection with Python and OpenCV.
 
-Toma capturas de plantillas (`data/`) y busca coincidencias en pantalla usando `pyautogui` con `confidence=0.8`. Al encontrar una coincidencia, mueve el mouse al centro y hace clic.
+Takes template images from `data/` and searches for them on screen using `pyautogui` with `confidence=0.8`. When a match is found, moves the cursor to the center and clicks.
 
-> **Disclaimer**: Este proyecto fue creado con fines educativos. Úsalo bajo tu propia responsabilidad.
+> **Disclaimer**: This project was created for educational purposes. Use it at your own risk.
 
-## Requisitos
+## Requirements
 
 - Python 3.8+
 - OpenCV (`cv2`)
 - PyAutoGUI
 - PyGetWindow
 
-## Instalación
+## Installation
 
 ```bash
 pip install opencv-python pyautogui pygetwindow
 ```
 
-## Uso
+## Usage
 
 ```bash
 cd src/
 python main.py
 ```
 
-El bot procesa las imágenes en `data/misiones/` y `data/objetos/`, buscando cada una en pantalla y haciendo clic cuando encuentra una coincidencia.
+The bot processes images from `data/misiones/` and `data/objetos/`, searching for each on screen and clicking when a match is found.
 
-## Estructura
+### How it works
+
+1. **`folder_processor`** — Lists all images in a given data directory.
+2. **`images_processor`** — Searches the screen for each image using template matching (`confidence=0.8`). On a match, moves the mouse to the center and clicks.
+3. **`windows_processor`** — (optional) Detects application windows by title for targeted searching.
+
+## Structure
 
 ```
 ├── data/
-│   ├── metas/       → Imágenes de objetivo (completado)
-│   ├── misiones/    → Plantillas de misiones (d1.png .. d3.png)
-│   └── objetos/     → Plantillas de objetos (b1.png .. b15.png)
+│   ├── metas/       → Objective images (completed state)
+│   ├── misiones/    → Mission templates (d1.png .. d3.png)
+│   └── objetos/     → Object templates (b1.png .. b15.png)
 └── src/
-    ├── main.py                         → Punto de entrada
-    ├── folder_processor/folder.py      → Lista imágenes de un directorio
-    ├── images_processor/images.py      → Búsqueda en pantalla + clics
-    └── windows_processor/windows.py    → Detección de ventanas
+    ├── main.py                         → Entry point
+    ├── folder_processor/folder.py      → List images in a directory
+    ├── images_processor/images.py      → Screen search + clicking
+    └── windows_processor/windows.py    → Window detection
 ```
 
-## Licencia
+## License
 
-MIT — ver [LICENSE](./LICENSE).
+MIT — see [LICENSE](./LICENSE).
